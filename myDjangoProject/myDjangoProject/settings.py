@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'shuttleBuddy.apps.ShuttlebuddyConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -75,8 +76,12 @@ WSGI_APPLICATION = 'myDjangoProject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'shuttle_buddy',
+        'USER': 'shuttlebuddy',
+        'PASSWORD': 'shuttlebuddy',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
     }
 }
 
