@@ -1,0 +1,23 @@
+version: "3.4"
+
+services:
+  django:
+    container_name: django
+    image: python:3.8
+    volumes:
+      - ./myDjangoProject:/app/
+
+  db:
+    container_name: django-db
+    image: mariadb:10.7
+    ports:
+      - "3306:3306"
+    volumes:
+      - mariadb-volume:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: shuttle_buddy
+      MYSQL_USER: shuttlebuddy
+      MYSQL_PASSWORD: shuttlebuddy
+volumes:
+  mariadb-volume: {}
