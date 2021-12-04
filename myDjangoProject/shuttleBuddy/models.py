@@ -24,6 +24,7 @@ class SocialGame(models.Model):
     venue = models.ForeignKey(Venue, on_delete=models.CASCADE)
     date = models.DateField()
     time = models.TimeField()
+    ticket_price = models.IntegerField(default=12)
     def __str__(self):
         return str(self.date) + " " + str(self.time) + " " + self.name
 
