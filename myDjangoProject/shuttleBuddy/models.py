@@ -4,6 +4,8 @@ from django.db import models
 from datetime import datetime
 
 class Venue(models.Model):
+    class Meta:
+        indexes = [ models.Index(fields=['name']) ]
     name = models.CharField(max_length=100)
     address = models.CharField(max_length=100)
     website = models.CharField(max_length=100)
@@ -14,6 +16,8 @@ class Venue(models.Model):
         return self.name
 
 class Court(models.Model):
+    class Meta:
+        indexes = [ models.Index(fields=['name']) ]
     name = models.CharField(max_length=100)
     venue = models.ForeignKey(Venue, on_delete=models.CASCADE)
     max_players = models.IntegerField(default=6)
@@ -22,6 +26,12 @@ class Court(models.Model):
         return self.name
 
 class SocialGame(models.Model):
+    class Meta:
+        indexes = [
+            models.Index(fields=['name']),
+            models.Index(fields=['date']),
+            models.Index(fields=['time'])
+        ]
     name = models.CharField(max_length=100)
     courts = models.ManyToManyField(Court)
     venue = models.ForeignKey(Venue, on_delete=models.CASCADE)
@@ -60,6 +70,8 @@ class SocialGame(models.Model):
         return sum([court.max_players for court in self.courts.all()])
 
 class Player(models.Model):
+    class Meta:
+        indexes = [ models.Index(fields=['username']) ]
     username = models.CharField(max_length=100)
     firstname = models.CharField(max_length=100)
     lastname = models.CharField(max_length=100)
