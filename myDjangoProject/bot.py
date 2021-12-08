@@ -21,6 +21,11 @@ def start(update: Update, context: CallbackContext) -> None:
         '/venue show available venues\n'
     )
 
+def debug(update: Update, context: CallbackContext) -> None:
+    """Debugging function"""
+    print(update)
+    print(context)
+
 
 def main() -> None:
     """Run bot."""
@@ -30,10 +35,10 @@ def main() -> None:
     dispatcher.add_handler(CommandHandler('start', start))
     dispatcher.add_handler(CommandHandler('venue', venue))
     # dispatcher.add_handler(PollAnswerHandler(receive_poll_answer))
-    # dispatcher.add_handler(CommandHandler('quiz', quiz))
+    dispatcher.add_handler(CommandHandler('game', social_game))
     # dispatcher.add_handler(PollHandler(receive_quiz_answer))
-    # dispatcher.add_handler(CommandHandler('preview', preview))
-    # dispatcher.add_handler(MessageHandler(Filters.poll, receive_poll))
+    dispatcher.add_handler(CommandHandler('book', book_game))
+    dispatcher.add_handler(MessageHandler(Filters.all, debug))
     # dispatcher.add_handler(CommandHandler('help', help_handler))
 
     # Start the Bot

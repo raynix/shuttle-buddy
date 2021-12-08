@@ -75,6 +75,16 @@ class Player(models.Model):
     username = models.CharField(max_length=100)
     firstname = models.CharField(max_length=100)
     lastname = models.CharField(max_length=100)
+
+    @classmethod
+    def find_or_create(cls, username):
+        try:
+            player = cls.objects.get(username=username)
+        except:
+            player = cls(username=username)
+            player.save()
+        return player
+
     def __str__(self):
         return f"{self.username} ({self.firstname} {self.lastname})"
 
@@ -84,5 +94,20 @@ class Booking(models.Model):
     court = models.ForeignKey(Court, on_delete=models.CASCADE)
     date = models.DateField()
     time = models.TimeField()
+
+    @classmethod
+    def find_or_create(cls, player, social_game):
+        try:
+            booking = cls.objects.get(player=player, social_game=social_game)
+            message = f"{player} already booked {social_game}"
+        except:
+            booking = cls(player=player, social_game=social_game)
+            booking.date = datetime.now().date()
+            booking.time = datetime.now().time()
+            booking.court = social_game.courts.first()
+            booking.save()
+            message = f"{player} booked {social_game}"
+        return booking, message
+
     def __str__(self):
         return f"{self.player} in {self.social_game}"
