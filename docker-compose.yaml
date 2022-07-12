@@ -4,20 +4,20 @@ services:
   django:
     container_name: django
     image: python:3.8
+    working_dir: /app
+    command: ['pip3', 'install', '-r', 'requirements.txt']
     volumes:
-      - ./myDjangoProject:/app/
+      - ./myDjangoProject/:/app/
 
   db:
-    container_name: django-db
-    image: mariadb:10.7
+    container_name: postgres
+    image: postgres:14.4-bullseye
     ports:
-      - "3306:3306"
+      - 5432:5432
     volumes:
-      - mariadb-volume:/var/lib/mysql
+      - postgres-volume:/var/lib/postgresql/data
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: shuttle_buddy
-      MYSQL_USER: shuttlebuddy
-      MYSQL_PASSWORD: shuttlebuddy
+      POSTGRES_PASSWORD: mypass
+
 volumes:
-  mariadb-volume: {}
+  postgres-volume: {}
