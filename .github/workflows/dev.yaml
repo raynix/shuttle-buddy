@@ -6,7 +6,7 @@ on:
       - 'main'
 
 env:
-  build_tag: dev-${GITHUB_RUN_ID}
+  build_tag: dev-${{ github.run_id }}
 
 jobs:
   docker:
