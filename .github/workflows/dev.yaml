@@ -5,6 +5,9 @@ on:
     branches:
       - 'main'
 
+env:
+  build_tag: dev-${GITHUB_RUN_ID}
+
 jobs:
   docker:
     runs-on: ubuntu-latest
@@ -27,4 +30,4 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: ghcr.io/raynix/shuttle-buddy:dev-${{ github.GITHUB_RUN_ID }}
+          tags: ghcr.io/raynix/shuttle-buddy:${{ env.build_tag }}
