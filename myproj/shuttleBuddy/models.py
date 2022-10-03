@@ -111,3 +111,18 @@ class Booking(models.Model):
 
     def __str__(self):
         return f"{self.player} in {self.social_game}"
+
+# class PlayerMatch(models.Model):
+#     social_game = models.ForeignKey(SocialGame, on_delete=models.CASCADE)
+#     date = models.DateField()
+#     time = models.TimeField()
+#     winner_player1 = models.ForeignKey(Player, null=True, on_delete=models.SET_NULL)
+#     winner_player2 = models.ForeignKey(Player, null=True, on_delete=models.SET_NULL)
+#     loser_player1 = models.ForeignKey(Player, null=True, on_delete=models.SET_NULL)
+#     loser_player2 = models.ForeignKey(Player, null=True, on_delete=models.SET_NULL)
+#     winner_score = models.SmallIntegerField()
+#     loser_score = models.SmallIntegerField()
+
+#     @classmethod
+#     def add_match(cls, winner1, winner2, loser1, loser2, winner_score, loser_score):
+#         pass

@@ -20,10 +20,9 @@ INSTALLED_APPS = [
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'shuttle',
-        'USER': 'postgres',
-        'PASSWORD': 'mypass',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'OPTIONS': {
+            'service': 'shuttle_buddy',
+            'passfile': '.pgpass',
+        },
     }
 }
