@@ -1,0 +1,7 @@
+- model: shuttleBuddy.SocialGameEvent
+  pk: 1
+  fields:
+    name: Monday night
+    venue: 1
+    weekday: 0
+    start_time: "19:30:00"

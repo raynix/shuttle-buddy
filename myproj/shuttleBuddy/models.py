@@ -25,6 +25,15 @@ class Court(models.Model):
     def __str__(self):
         return self.name
 
+class SocialGameEvent(models.Model):
+    class Meta:
+        indexes = [ models.Index(fields=['name']) ]
+
+    name = models.CharField(max_length=100)
+    venue = models.ForeignKey(Venue, on_delete=models.CASCADE)
+    weekday = models.IntegerField()
+    start_time = models.TimeField()
+
 class SocialGame(models.Model):
     class Meta:
         indexes = [

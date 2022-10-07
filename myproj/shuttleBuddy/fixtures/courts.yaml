@@ -1,0 +1,11 @@
+- model: shuttleBuddy.Court
+  pk: 1
+  fields:
+    name: C1
+    venue: 1
+
+- model: shuttleBuddy.Court
+  pk: 2
+  fields:
+    name: C2
+    venue: 1
