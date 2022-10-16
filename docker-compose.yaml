@@ -24,6 +24,17 @@ services:
     image: postgres:14.4-bullseye
     command: [ 'sleep', '86400' ]
 
+  mongodb:
+    container_name: mongodb
+    image: mongo:6.0.2
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo-volume:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: pass
 
 volumes:
   postgres-volume: {}
+  mongo-volume: {}
