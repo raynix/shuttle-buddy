@@ -1,6 +1,0 @@
-- model: shuttleBuddy.Venue
-  pk: 1
-  fields:
-    name: The Test Venue
-    address: 123 Test St
-    website: https://raynix.info

@@ -31,3 +31,14 @@ jobs:
         with:
           push: true
           tags: ghcr.io/raynix/shuttle-buddy:${{ env.build_tag }}
+      - name: Update deployment version
+        run: |
+          pwd
+          ls -lht
+          sed -i -E "s|(image: ghcr.io/raynix/shuttle-buddy:).*|\1${{ env.build_tag }}|g" .kustomize/deploy.yaml
+      - name: Auto commit & push changes
+        run: |
+          git config --global user.name 'raynix Bot'
+          git config --global user.email 'raynix@gmail.com'
+          git commit -am "Automated commit"
+          git push

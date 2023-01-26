@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shuttle-buddy
+spec:
+  revisionHistoryLimit: 3
+  replicas: 2
+  selector:
+    matchLabels:
+      app: shuttle-buddy
+  template:
+    metadata:
+      labels:
+        app: shuttle-buddy
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/arch
+                operator: In
+                values:
+                - amd64
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app
+                      operator: In
+                      values:
+                        - oewn-mysql
+                topologyKey: "kubernetes.io/hostname"
+      containers:
+        - name: telegram-bot
+          image: ghcr.io/raynix/shuttle-buddy:dev-3579369297
+          envFrom:
+            - secretRef:
+                name: shuttle-buddy-env
+          env:
+            - name: PROD
+              value: 'true'
+          ports:
+            - name: webhook
+              containerPort: 8000
+          resources:
+            requests:
+              memory: 400Mi
+              cpu: 200m
+          livenessProbe:
+            tcpSocket:
+              port: 8000
+          readinessProbe:
+            tcpSocket:
+              port: 8000

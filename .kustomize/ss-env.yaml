@@ -1,0 +1,15 @@
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  creationTimestamp: null
+  name: shuttle-buddy-env
+  namespace: shuttle-buddy
+spec:
+  encryptedData:
+    BOT_TOKEN: AgCgeFnJRrEmBC6Vvg7MpD8p1Ls6hDpfTv3WhqO3TvhM8OpUPF1o1SLF7r/TrO/zCuLmu+JCF6WyXyzotT2p9xBV38LhTItdqBj8i+Fo8zSNkt+W+e7IWRXpQpboOq90iMPGW/zCAElD4W2CnTo7FthQH4wnuM/vp3IaSRbFI9+KK9TVcuoTgAAgLmyxmdwrbQYL68GBIpYTzZr0nK7BVwl9GdNhwiUiefjDOn4iTztv+qG1DNunekmXEVBxQwUS6hlBaUIq1TYdZ4lduJy5WWrwYkH4f0xD8LAxjJFzG9Nv1dHkPbCn/IJpNXholPCkf1O1mkEeU1dPNURG0Uc5QHyCpCx4YEGVNJHHXHVilaLAF/5wwUsI53dJLIVzJv6JEYCuobg9bK5N7qbiSxBvjrwZDqzC5IIcbRe5p+JZSltwxbvWAcigcc1sU6CkeldYXhFu97qZAHG4JGpleQx3tEFLDjqsG9VfZ7+FKP+Lqvu/9kMkIYa5bWZTSU71tt8aCLXghw5bLiOjvmPXs+kxmthGZQcK5CgWAkgEL2csybHOoontsxtmCwJFWn2TEG5lG7oZvjCKXGBFHbYonuJBq/VS2X1KorAYNlPGGJ4PwWrXuO2LnyUvgO8HEiHqkn6gdpoKAfKvuPzrjTkUYE/p3RumwLXehpfDUepAwjU3x13m+t9LGh3LkrvW1oO08B+mUT/N+tdNQV5EXq9zk1G+2b1a8l8hFlz5SILvwTUQXEohssVJlJF6DQni2pjd55wr
+  template:
+    data: null
+    metadata:
+      creationTimestamp: null
+      name: shuttle-buddy-env
+      namespace: shuttle-buddy

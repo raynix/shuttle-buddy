@@ -1,8 +1,0 @@
-- model: shuttleBuddy.SocialGame
-  pk: 1
-  fields:
-    name: Test Game
-    venue: 1
-    courts: [1, 2]
-    date: "2018-01-01"
-    time: "12:00:00"
