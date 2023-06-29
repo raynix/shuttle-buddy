@@ -24,7 +24,7 @@ spec:
                 - amd64
       containers:
         - name: telegram-bot
-          image: ghcr.io/raynix/shuttle-buddy:dev-5408616865
+          image: ghcr.io/raynix/shuttle-buddy:dev-5412188389
           envFrom:
             - secretRef:
                 name: lucky-birdie-env
