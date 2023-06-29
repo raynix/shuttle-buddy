@@ -40,7 +40,9 @@ def main() -> None:
     dispatcher = updater.dispatcher
     dispatcher.add_handler(CommandHandler('help', help))
     dispatcher.add_handler(CommandHandler('debug', debug))
-    # dispatcher.add_handler(CommandHandler('users', users))
+    dispatcher.add_handler(CommandHandler('add_venue', add_venue))
+    dispatcher.add_handler(CommandHandler('venues', list_venues))
+
     # dispatcher.add_handler(CommandHandler('adduser', add_user))
 
     dispatcher.add_error_handler(error_handler, run_async=True)
