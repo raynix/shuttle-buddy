@@ -1,23 +1,30 @@
 from mongoengine import Document, fields
 
-class TgUser(Document):
-   tg_user_id = fields.IntField(primary=True)
-   name = fields.StringField()
-   address = fields.StringField()
-   meta = {
-      'indexes': ['tg_user_id']
-   }
+import re
 
-   @classmethod
-   def find_or_create(cls, tg_user_id, first_name, last_name):
-      user = TgUser.objects(tg_user_id=tg_user_id).first()
-      if user is None:
-         user = TgUser(
+def sanitize(string):
+    if string is None:
+        return ''
+    return re.sub("[\$\.]", "_", string)
+
+class TgUser(Document):
+    tg_user_id = fields.IntField(primary=True)
+    name = fields.StringField()
+    address = fields.StringField()
+    meta = {
+        'indexes': ['tg_user_id']
+    }
+
+    @classmethod
+    def find_or_create(cls, tg_user_id, first_name, last_name):
+        user = TgUser.objects(tg_user_id=tg_user_id).first()
+        if user is None:
+            user = TgUser(
             tg_user_id = tg_user_id,
-            name=f'{first_name or ""} {last_name or ""}',
-         )
-         user.save()
-      return user
+            name=f'{sanitize(first_name)} {sanitize(last_name)}',
+            )
+            user.save()
+        return user
 
 class Venue(Document):
     name = fields.StringField()
@@ -35,6 +42,8 @@ class SocialEventSchedule(Document):
     venue = fields.ReferenceField(Venue)
     start_time = fields.DateTimeField()
     end_time = fields.DateTimeField()
+    day = fields.IntField()
+    repeat_type = fields.EnumField()
 
 class SocialEvent(Document):
     name = fields.StringField()

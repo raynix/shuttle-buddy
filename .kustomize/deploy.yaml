@@ -1,17 +1,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: shuttle-buddy
+  name: lucky-birdie
 spec:
   revisionHistoryLimit: 3
   replicas: 2
   selector:
     matchLabels:
-      app: shuttle-buddy
+      app: lucky-birdie
   template:
     metadata:
       labels:
-        app: shuttle-buddy
+        app: lucky-birdie
     spec:
       affinity:
         nodeAffinity:
@@ -22,23 +22,12 @@ spec:
                 operator: In
                 values:
                 - amd64
-        podAntiAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-            - weight: 100
-              podAffinityTerm:
-                labelSelector:
-                  matchExpressions:
-                    - key: app
-                      operator: In
-                      values:
-                        - oewn-mysql
-                topologyKey: "kubernetes.io/hostname"
       containers:
         - name: telegram-bot
           image: ghcr.io/raynix/shuttle-buddy:dev-5408234322
           envFrom:
             - secretRef:
-                name: shuttle-buddy-env
+                name: lucky-birdie-env
           env:
             - name: PROD
               value: 'true'

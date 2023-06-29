@@ -9,7 +9,7 @@ spec:
       targetPort: 8000
       protocol: TCP
   selector:
-    app: word-squad
+    app: lucky-birdie
 ---
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
@@ -19,7 +19,7 @@ spec:
   gateways:
     - istio-system/awes-gateway
   hosts:
-    - shuttlebuddy.awes.one
+    - luckybirdie.awes.one
   http:
     - route:
       - destination:
