@@ -35,7 +35,7 @@ spec:
                 topologyKey: "kubernetes.io/hostname"
       containers:
         - name: telegram-bot
-          image: ghcr.io/raynix/shuttle-buddy:dev-4019848767
+          image: ghcr.io/raynix/shuttle-buddy:dev-5408234322
           envFrom:
             - secretRef:
                 name: shuttle-buddy-env
