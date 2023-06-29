@@ -3,11 +3,11 @@ import logging
 import mongoengine
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
 from telegram import Update
-from birdie.commandHandlers import *
+from commandHandlers import *
 
 TOKEN = os.environ["BOT_TOKEN"]
 PROD = os.environ.get("PROD", "false")
-DOMAIN = os.environ.get("DOMAIN", "birdie.awes.one")
+DOMAIN = os.environ.get("DOMAIN", "luckybirdie.awes.one")
 
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO
