@@ -17,6 +17,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+@admin_only
 def add_venue(update: Update, context: CallbackContext) -> None:
     message = update.message or update.edited_message
     channel = TgChannel.find_or_create(update.effective_chat.id)
@@ -35,6 +36,7 @@ def add_venue(update: Update, context: CallbackContext) -> None:
             return
     update.message.reply_text("Venue format: \"name:address:subrub:phone:map_url:courts\"")
 
+@admin_only
 def list_venues(update: Update, context: CallbackContext) -> None:
     channel = TgChannel.find_or_create(update.effective_chat.id)
     venues = Venue.list(channel)
